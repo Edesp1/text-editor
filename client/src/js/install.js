@@ -11,9 +11,10 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 // TODO: Implement a click event handler on the `butInstall` element
 butInstall.addEventListener('click', async () => {
-    if (!installPrompt) {
+    if (!installPrompt) { //checks if installprompt is available if not it exits out
         return;
       }
+      //awaits till the user installs the app then logs the outcome if was installed or not
       const result = await installPrompt.prompt();
       console.log(`Install prompt was: ${result.outcome}`);
       installPrompt = null;
@@ -22,5 +23,5 @@ butInstall.addEventListener('click', async () => {
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener('appinstalled', (event) => {
-    console.log("Thank you for installing our app!");
+    console.log("Thank you for installing our app!"); //logs the message if the app was installed
 });
