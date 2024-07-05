@@ -27,17 +27,16 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-const assetCache = new StaleWhileRevalidate({
-  cacheName: 'asset-cache',
-  plugins: [
-    new CacheableResponsePlugin({
-      statuses: [0, 200],
-    }),
-    new ExpirationPlugin({
-      maxEntries: 60, // Max number of entries
-      maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
-    }),
-  ],
-});
+workbox.routing.registerRoute(
+  /https:\/\/api\.exchangeratesapi\.io\/latest/,  
+  new workbox.strategies.NetworkFirst({
+    cacheName: "currencies",
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 10 * 60 // 10 minutes
+      })
+    ]
+  })
+);
 
 registerRoute();

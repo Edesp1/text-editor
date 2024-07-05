@@ -18,9 +18,11 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new WorkboxWebpackPlugin.InjectManifest({
+        swSrc: "./src/src-sw.js",
+        swDest: "sw.js"
+      })
     ],
-
     module: {
       rules: [
         
