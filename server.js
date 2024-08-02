@@ -6,7 +6,7 @@ console.log('Template Path:', path.resolve(__dirname, 'client/src/index.html'));
 console.log('SW Path:', path.resolve(__dirname, 'client/src/src-sw.js'));
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware to parse URL-encoded data and JSON
 app.use(express.urlencoded({ extended: true }));
@@ -21,7 +21,7 @@ app.get('*', (req, res) => {
 });
 
 // Route setup (assuming htmlRoutes.js is correctly configured)
-require('./routes/htmlRoutes')(app);
+require('./server/routes/htmlRoutes')(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

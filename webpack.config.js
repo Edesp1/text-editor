@@ -6,19 +6,19 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    main: './src/js/index.js',
-    install: './src/js/install.js',
-    database: './src/js/database.js',
-    editor: './src/js/editor.js',
-    header: './src/js/header.js',
+    main: './client/src/js/index.js',
+    install: './client/src/js/install.js',
+    database: './client/src/js/database.js',
+    editor: './client/src/js/editor.js',
+    header: './client/src/js/header.js',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'client/dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './client/src/index.html',
       filename: 'index.html',
       chunks: ['main'],
     }),
@@ -32,14 +32,14 @@ module.exports = {
       start_url: '/',
       icons: [
         {
-          src: path.resolve(__dirname, 'src/images/logo.png'),
+          src: path.resolve(__dirname, 'client/src/images/logo.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           destination: path.join('images', 'logos'),
         },
       ],
     }),
     new InjectManifest({
-      swSrc: './src/src-sw.js',
+      swSrc: './client/src/src-sw.js',
       swDest: 'sw.js',
     }),
   ],
